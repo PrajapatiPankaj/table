@@ -1,0 +1,33 @@
+.comrender{
+        
+    display: flex;
+    justify-content: center;
+}
+.container{
+   height: 50%;
+   width:50%;
+   align-items: center;
+}
+table, td, th {
+    border: 2px solid rgb(173, 88, 88);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    height: 50px;
+}
+
+.btn {
+  padding: 5px;
+  margin:10px;
+  border: 2px solid red;
+  color:whitesmoke;
+  border-radius: 13px;
+  text-decoration:none;
+  background: rgb(119, 219, 119) ;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
