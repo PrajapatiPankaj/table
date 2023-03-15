@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "id": 2,
+      "name": "Chaman",
+      "title": "React-demo-2",
+      "author": "caroli",
+      "email": "chaman@gmail.com",
+      "subjectId": 1
+    },
+    {
       "id": 3,
       "name": "Pavan",
       "title": "React-demo-3",
@@ -15,6 +23,14 @@
       "email": "navyan@gmail.com",
       "subjectId": 1,
       "id": 5
+    },
+    {
+      "name": "Privati",
+      "title": "React-demo-21",
+      "author": "Lartoper",
+      "email": "privati@gmail.com",
+      "subjectId": 2,
+      "id": 6
     }
   ],
   "subject": [

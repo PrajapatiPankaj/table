@@ -12,6 +12,10 @@ table, td, th {
     border: 2px solid rgb(173, 88, 88);
 }
 
+.table .tr{
+    border-top: 1px solid black;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -19,9 +23,12 @@ table {
 
 th {
     height: 50px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
 }
 
-.btn {
+/* .btn {
   padding: 5px;
   margin:10px;
   border: 2px solid red;
@@ -30,4 +37,4 @@ th {
   text-decoration:none;
   background: rgb(119, 219, 119) ;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
+} */
