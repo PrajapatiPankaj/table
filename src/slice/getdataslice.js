@@ -1,27 +1,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const thunkUserData = createAsyncThunk(
-  "userdata",
-  async () => {
-          console.log("step 2222");
-    try {
-     const res = await axios.get("https://jsonplaceholder.typicode.com/users")
+export const thunkUserData = createAsyncThunk("userdata", async () => {
+  console.log("step 2222");
+  // try {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/users");
 
-         console.log("data in response", res.data);
-        return res.data;
-    
-    } catch (err) {
-      return err;
-    }
-  }
-);
+    console.log("data in response", res.data);
+    return res.data;
+  // } catch (err) {
+  //   return err;
+  // }
+});
 
 const initialState = {
-   allData: [],
-   isLoading: false,
-   hasError: false,
- };
+  allData: [],
+  isLoading: false,
+  hasError: false,
+};
 
 //  console.log("initial State",initialState )
 const userDataSlice = createSlice({
@@ -33,15 +29,20 @@ const userDataSlice = createSlice({
     builder
       .addCase(thunkUserData.pending, (state, action) => {
         state.isLoading = true;
+        state.allData = null;
+        state.hasError=false;
         console.log("State", state);
       })
+      
       .addCase(thunkUserData.fulfilled, (state, action) => {
         console.log("step 3333", action.payload);
         console.log("initialState", state.allData);
-
-        state.isLoading = false;
-        state.hasError = false;
-        state.allData = action.payload;
+       
+          state.isLoading = false;
+          state.hasError = false;
+          state.allData = action.payload;
+          console.log("State.alldata", state.allData);
+       
       })
       .addCase(thunkUserData.rejected, (state, action) => {
         state.isLoading = false;

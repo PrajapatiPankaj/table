@@ -11,9 +11,13 @@ const GetUser = () => {
 const dispatch =useDispatch();
 
 
-const userData = useSelector((state) => state.userdata.allData);
+const {allData:userData,isLoading,hasError} = useSelector((state) => state.userdata);
 
-console.log("Userdata in UI : ", userData)
+console.log("Loading", isLoading);
+console.log("Error", hasError);
+
+
+// console.log("Userdata in UI : ", userData)
 
 useEffect(() => {
     // const ts = getUserData();
@@ -27,39 +31,45 @@ useEffect(() => {
     // printAddress();
 
     console.log("step 1111");
-    dispatch(thunkUserData());
+   dispatch(thunkUserData());
 
   }, []);
 
-  return (
-    <div className="container">
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Address</th>
-        </tr>
-        {userData.map((data) => (
-          // <table key={data.id}>
-          <tr key={userData.id}>
-            <td>{data.name}</td>
-            <td>{data.email}</td>
-            <td>{data.address.city}</td>
-            <td>
-              <button className="btn">
-                Update
-              </button>
-            </td>
-            <td>
-              <button className="btn">
-                Delete
-              </button>
-            </td>
-          </tr>
-        ))}
-      </table>
-    </div>
-  );
+ 
+
+
+ return (
+   <>
+     {isLoading && <div>Loading....</div>}
+     {userData && <div className="container">
+       <table>
+         <tr>
+           <th>Name</th>
+           <th>Email</th>
+           <th>Address</th>
+         </tr>
+         {userData.map((data) => (
+           // <table key={data.id}>
+           <tr key={userData.id}>
+             <td>{data.name}</td>
+             <td>{data.email}</td>
+             <td>{data.address.city}</td>
+             <td>
+               <button className="btn">Update</button>
+             </td>
+             <td>
+               <button className="btn">Delete</button>
+             </td>
+           </tr>
+         ))}
+       </table>
+     </div>}
+
+     {hasError&& <div>Something went wrong...</div>}
+   </>
+ );
 };
+
+
 
 export default GetUser;
