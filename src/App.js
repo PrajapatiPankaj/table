@@ -1,16 +1,22 @@
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 
-
-import GetUser from './components/getuser';
+import GetUser from "./components/getuser";
 
 function App() {
-
-  
   return (
     <>
       <h2 className="comrender">App.js</h2>
       <hr />
       <div className="comrender">
-        <GetUser />
+        <Router>
+          <Routes>
+           <Route path="/" element={<GetUser />} />
+          </Routes>
+        </Router>
       </div>
     </>
   );

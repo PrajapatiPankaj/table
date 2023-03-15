@@ -1,0 +1,30 @@
+{
+  "posts": [
+    {
+      "id": 3,
+      "name": "Pavan",
+      "title": "React-demo-3",
+      "author": "Netramani",
+      "email": "pavan@gmail.com",
+      "subjectId": 1
+    },
+    {
+      "name": "Navyan",
+      "title": "React-demo-44",
+      "author": "Karoti",
+      "email": "navyan@gmail.com",
+      "subjectId": 1,
+      "id": 5
+    }
+  ],
+  "subject": [
+    {
+      "subject": "demo1",
+      "id": 2
+    },
+    {
+      "subject": "demo3",
+      "id": 1
+    }
+  ]
+}
