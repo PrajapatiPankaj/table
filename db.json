@@ -1,12 +1,10 @@
 {
   "posts": [
     {
-      "name": "Privati",
-      "title": "React-demo-21",
-      "author": "Lartoper",
+      "id": 6,
+      "name": "Privatidssdf",
       "email": "privati@gmail.com",
-      "subjectId": 2,
-      "id": 6
+      "author": "Lartoper"
     },
     {
       "id": 1,
@@ -53,6 +51,30 @@
       "email": "povan@gmail.com",
       "author": "trocani",
       "id": 12
+    },
+    {
+      "name": "Privati",
+      "email": "privati@gmail.com",
+      "author": "Lartopersdadssa",
+      "id": 13
+    },
+    {
+      "name": "Privati",
+      "email": "privati@gmail.com",
+      "author": "Lartopersdffdsdfsdf",
+      "id": 14
+    },
+    {
+      "name": "Mahesh",
+      "email": "mahesh@gmail.com",
+      "author": "mantoliffffff",
+      "id": 15
+    },
+    {
+      "name": "san",
+      "email": "san@gmail.com",
+      "author": "samuti",
+      "id": 16
     }
   ],
   "subject": [

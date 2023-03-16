@@ -8,6 +8,7 @@ import {
   addUserThunk,
   deleteThunk,
   thunkUserData,
+  updateThunk,
 } from "../slice/getdataslice";
 // import { useDispatch } from "react-redux";
 // import { useNavigate } from "react-router-dom";
@@ -71,7 +72,10 @@ const GetUser = () => {
     },
     onSubmit: (values) => {
       console.log("values", values);
-      dispatch(addUserThunk(values));
+
+      values?.id
+        ? dispatch(updateThunk(values))
+        : dispatch(addUserThunk(values));
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -86,10 +90,12 @@ const GetUser = () => {
   });
   const handleSetFormValues = (data) => {
     formik.setValues({
-      name: `${data.name}`,
-      email: `${data.email}`,
-      author: `${data.author}`,
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      author: data.author,
     });
+    dispatch(updateThunk(data));
   };
   const openUpdateModal = (data) => {
     handleShow();
@@ -172,13 +178,28 @@ const GetUser = () => {
                         <Button variant="secondary" onClick={handleClose}>
                           Cancel
                         </Button>
-                        <Button
+                        {/* <Button
                           variant="primary"
                           type="submit"
                           onClick={handleClose}
-                        >
-                          Save
-                        </Button>
+                        > */}
+                        {formik.values.id ? (
+                          <Button
+                            variant="primary"
+                            type="submit"
+                            onClick={handleClose}
+                          >
+                            Update
+                          </Button>
+                        ) : (
+                          <Button
+                            variant="primary"
+                            type="submit"
+                            onClick={handleClose}
+                          >
+                            Save
+                          </Button>
+                        )}
                       </Modal.Footer>
                     </form>
                   </Modal>
@@ -202,7 +223,7 @@ const GetUser = () => {
                   <td>
                     <Button
                       variant="outline-success"
-                      onClick={()=>openUpdateModal(data)}
+                      onClick={() => openUpdateModal(data)}
                     >
                       Update
                     </Button>

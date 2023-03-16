@@ -41,6 +41,22 @@ export const addUserThunk = createAsyncThunk(
   }
 );
 
+export const updateThunk = createAsyncThunk(
+  "userData/updateThunk",
+
+  async (data, thunkAPI) => {
+
+      console.log("UpdateThunk", data)
+      
+    const updt= await axios.put(`http://localhost:3000/posts/${data.id}`, data);
+    // const res = add.data;
+     console.log("response in Updatethunk", updt.data);
+    // if ((res?.status === 200) | 201) {
+    //   return thunkAPI.dispatch(thunkUserData());
+    // }
+  }
+);
+
 const initialState = {
   allData: [],
   isLoading: false,
