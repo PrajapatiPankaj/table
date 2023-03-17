@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addUserThunk, deleteThunk, updateThunk } from "../slice/getdataslice";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import CardData from "./carddata";
 
 const Cards = () => {
   const dispatch = useDispatch();
@@ -45,18 +46,25 @@ const Cards = () => {
         .required("required"),
     }),
   });
-  const updt = (data) => {
 
-     const id= data.id;
-     if(id===data.id){
-             formik.setValues({
-               id: data.id,
-               name: data.name,
-               email: data.email,
-               author: data.author,
-             });
-             setVal(false);
-     }
+   
+
+  const updt = (data) => {
+    const id = data.id;
+    console.log("id when edit data", id);
+        
+    
+
+     id === data.id
+       ? (setVal(false))
+         (formik.setValues(
+           {
+             name: data.name,
+             email: data.email,
+             author: data.author,
+           }))
+       : setVal(true);
+    
    
     // dispatch(updateThunk(data));
   };
@@ -73,71 +81,7 @@ const Cards = () => {
       <div class="row" style={{ marginLeft: 200 }}>
         {userData &&
           userData.map((data) => (
-            <div
-              className="col-sm-2 col-lg-3"
-              style={{ margin: 10 }}
-              key={data.id}
-            >
-              <Card border="primary" key={data.id} className="cards">
-                <Card.Header>
-                  User-Data
-                  <button onClick={() => updt(data)}>
-                    <MDBIcon far icon="edit" className="text-info" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      del(data.id);
-                    }}
-                  >
-                    <MDBIcon fas icon="trash-alt" className="text-danger" />
-                  </button>
-                </Card.Header>
-
-                {val ? (
-                  <Card.Body>
-                    <Card.Title>{data.name}</Card.Title>
-
-                    <Card.Text>
-                      {data.email}
-                      <br />
-                      {data.author}
-                    </Card.Text>
-                  </Card.Body>
-                ) : (
-                  <form onSubmit={formik.handleSubmit}>
-                    <input
-                      id="name"
-                      name="name"
-                      type="string"
-                      placeholder="Name"
-                      className="border border-dark rounded-top w-75"
-                      onChange={formik.handleChange}
-                      value={formik.values.name}
-                    />
-                    <br />
-                    <input
-                      id="email"
-                      name="email"
-                      type="string"
-                      placeholder="Email"
-                      className="border border-dark rounded-top w-75"
-                      onChange={formik.handleChange}
-                      value={formik.values.email}
-                    />
-                    <br />
-                    <input
-                      id="author"
-                      name="author"
-                      type="string"
-                      placeholder="Auther name"
-                      className="border border-dark rounded-top w-75"
-                      onChange={formik.handleChange}
-                      value={formik.values.author}
-                    />
-                  </form>
-                )}
-              </Card>
-            </div>
+            <CardData data={data}/>
           ))}
       </div>
       {hasError && <div>Something went wrong...</div>}
