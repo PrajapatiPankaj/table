@@ -1,18 +1,10 @@
 {
   "posts": [
     {
-      "id": 6,
-      "name": "Privatidssdf",
-      "email": "privati@gmail.com",
-      "author": "Lartoper"
-    },
-    {
       "id": 1,
-      "name": "Navnit",
-      "title": "React-demo-3",
-      "author": "Netramani",
+      "name": "Navnitkaur",
       "email": "navnit@gmail.com",
-      "subjectId": 1
+      "author": "Netramani"
     },
     {
       "id": 7,
@@ -35,10 +27,10 @@
       "id": 9
     },
     {
-      "name": "Kaushik",
+      "id": 10,
+      "name": "Kaushikatri",
       "email": "kaushik@gmail.com",
-      "author": "Kailaashtri",
-      "id": 10
+      "author": "Kailaashtri"
     },
     {
       "name": "Chaprani",
@@ -47,10 +39,10 @@
       "id": 11
     },
     {
-      "name": "povan",
+      "id": 12,
+      "name": "povannnn",
       "email": "povan@gmail.com",
-      "author": "trocani",
-      "id": 12
+      "author": "trocani"
     },
     {
       "name": "Privati",
@@ -75,6 +67,18 @@
       "email": "san@gmail.com",
       "author": "samuti",
       "id": 16
+    },
+    {
+      "name": "savan",
+      "email": "savan@gmail.com",
+      "author": "sitramani",
+      "id": 17
+    },
+    {
+      "id": 18,
+      "name": "Rihan",
+      "email": "rihan@gmail.commmm",
+      "author": "tienbbbbbb"
     }
   ],
   "subject": [

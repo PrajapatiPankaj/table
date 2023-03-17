@@ -6,6 +6,7 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import GetUser from "./components/getuser";
+import Cards from "./components/cards";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Router>
           <Routes>
            <Route path="/" element={<GetUser />} />
+           <Route path="/cards" element={<Cards/>}/>
           </Routes>
         </Router>
       </div>

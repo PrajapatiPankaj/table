@@ -2,6 +2,9 @@ import "../com.css";
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { useFormik } from "formik";
+import Card from "react-bootstrap/Card";
+import { MDBIcon } from "mdb-react-ui-kit";
+
 // import { getUserData } from "../api/userapi";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,7 +14,7 @@ import {
   updateThunk,
 } from "../slice/getdataslice";
 // import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -27,7 +30,7 @@ const GetUser = () => {
   const handleShow = () => setShow(true);
 
   const dispatch = useDispatch();
-  // const navigate =useNavigate();
+  const navigate =useNavigate();
 
   const {
     allData: userData,
@@ -102,151 +105,166 @@ const GetUser = () => {
     handleSetFormValues(data);
   };
 
+  const addNewData=()=>{
+            handleShow();
+      formik.resetForm({values:''})
+  }
+
   return (
     <>
-      {isLoading && <div>Loading....</div>}
-      {userData && (
-        <div className="container">
-          <Table striped bordered hover>
-            <thead>
-              <tr className="addButton">
-                <th colSpan={4}>
-                  <Button variant="primary" onClick={handleShow}>
-                    Add User
-                  </Button>
-                  <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
+      <div className="dispaly">
+        {isLoading && <div>Loading....</div>}
+       
+        {userData && (
+          <div className="container">
+            <Table striped bordered hover>
+              <thead>
+                <tr className="addButton">
+                  <th colSpan={4}>
+                    <Button variant="primary" onClick={() => addNewData()}>
+                      Add User
+                    </Button>
+                    <Button
+                      className="goToCards"
+                      variant="primary"
+                      onClick={() => navigate("/cards")}
+                    >
+                      Go to cards
+                    </Button>
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Modal heading</Modal.Title>
+                      </Modal.Header>
 
-                    <form onSubmit={formik.handleSubmit}>
-                      <Modal.Body>
-                        <Form>
-                          <label
-                            className="m-4 font-weight-bolder"
-                            htmlFor="name"
-                          >
-                            Enter Name
-                          </label>
-                          <input
-                            id="name"
-                            name="name"
-                            type="string"
-                            placeholder="Name"
-                            className="border border-dark rounded-top w-75"
-                            onChange={formik.handleChange}
-                            value={formik.values.name}
-                          />
-                          <br></br>
-                          <hr />
-                          <label
-                            className="m-4 font-weight-bolder"
-                            htmlFor="email"
-                          >
-                            Enter Email
-                          </label>
-                          <input
-                            id="email"
-                            name="email"
-                            type="string"
-                            placeholder="Email"
-                            className="border border-dark rounded-top w-75"
-                            onChange={formik.handleChange}
-                            value={formik.values.email}
-                          />
-                          <br></br>
-                          <hr />
-                          <label
-                            className="m-4 font-weight-bolder"
-                            htmlFor="auther"
-                          >
-                            Enter Author Name
-                          </label>
-                          <input
-                            id="author"
-                            name="author"
-                            type="string"
-                            placeholder="Auther name"
-                            className="border border-dark rounded-top w-75"
-                            onChange={formik.handleChange}
-                            value={formik.values.author}
-                          />
-                          <hr />
-                        </Form>
-                      </Modal.Body>
-                      <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                          Cancel
-                        </Button>
-                        {/* <Button
+                      <form onSubmit={formik.handleSubmit}>
+                        <Modal.Body>
+                          <Form>
+                            <label
+                              className="m-4 font-weight-bolder"
+                              htmlFor="name"
+                            >
+                              Enter Name
+                            </label>
+                            <input
+                              id="name"
+                              name="name"
+                              type="string"
+                              placeholder="Name"
+                              className="border border-dark rounded-top w-75"
+                              onChange={formik.handleChange}
+                              value={formik.values.name}
+                            />
+                            <br></br>
+                            <hr />
+                            <label
+                              className="m-4 font-weight-bolder"
+                              htmlFor="email"
+                            >
+                              Enter Email
+                            </label>
+                            <input
+                              id="email"
+                              name="email"
+                              type="string"
+                              placeholder="Email"
+                              className="border border-dark rounded-top w-75"
+                              onChange={formik.handleChange}
+                              value={formik.values.email}
+                            />
+                            <br></br>
+                            <hr />
+                            <label
+                              className="m-4 font-weight-bolder"
+                              htmlFor="auther"
+                            >
+                              Enter Author Name
+                            </label>
+                            <input
+                              id="author"
+                              name="author"
+                              type="string"
+                              placeholder="Auther name"
+                              className="border border-dark rounded-top w-75"
+                              onChange={formik.handleChange}
+                              value={formik.values.author}
+                            />
+                            <hr />
+                          </Form>
+                        </Modal.Body>
+                        <Modal.Footer>
+                          <Button variant="secondary" onClick={handleClose}>
+                            Cancel
+                          </Button>
+                          {/* <Button
                           variant="primary"
                           type="submit"
                           onClick={handleClose}
                         > */}
-                        {formik.values.id ? (
-                          <Button
-                            variant="primary"
-                            type="submit"
-                            onClick={handleClose}
-                          >
-                            Update
-                          </Button>
-                        ) : (
-                          <Button
-                            variant="primary"
-                            type="submit"
-                            onClick={handleClose}
-                          >
-                            Save
-                          </Button>
-                        )}
-                      </Modal.Footer>
-                    </form>
-                  </Modal>
-                </th>
-              </tr>
-            </thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Author</th>
-              <th></th>
-              <th></th>
-            </tr>
-            {userData.map((data) => (
-              // <table key={data.id}>
-              <tbody>
-                <tr key={data.id}>
-                  <td>{data.name}</td>
-                  <td>{data.email}</td>
-                  <td>{data.author}</td>
-                  <td>
-                    <Button
-                      variant="outline-success"
-                      onClick={() => openUpdateModal(data)}
-                    >
-                      Update
-                    </Button>
-                  </td>
-                  <td>
-                    <Button
-                      variant="outline-danger"
-                      className="btn"
-                      onClick={() => {
-                        handleDelete(data.id);
-                      }}
-                    >
-                      Delete
-                    </Button>
-                  </td>
+                          {formik.values.id ? (
+                            <Button
+                              variant="primary"
+                              type="submit"
+                              onClick={handleClose}
+                            >
+                              Update
+                            </Button>
+                          ) : (
+                            <Button
+                              variant="primary"
+                              type="submit"
+                              onClick={handleClose}
+                            >
+                              Save
+                            </Button>
+                          )}
+                        </Modal.Footer>
+                      </form>
+                    </Modal>
+                  </th>
                 </tr>
-              </tbody>
-            ))}
-          </Table>
-        </div>
-      )}
+              </thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Author</th>
+                <th></th>
+                <th></th>
+              </tr>
+              {userData.map((data) => (
+                // <table key={data.id}>
+                <tbody>
+                  <tr key={data.id}>
+                    <td>{data.name}</td>
+                    <td>{data.email}</td>
+                    <td>{data.author}</td>
+                    <td>
+                      <Button
+                        variant="outline-success"
+                        onClick={() => openUpdateModal(data)}
+                      >
+                        Update
+                      </Button>
+                    </td>
+                    <td>
+                      <Button
+                        variant="outline-danger"
+                        className="btn"
+                        onClick={() => {
+                          handleDelete(data.id);
+                        }}
+                      >
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
+            </Table>
+          </div>
+        )}
 
-      {hasError && <div>Something went wrong...</div>}
+        {hasError && <div>Something went wrong...</div>}
+      </div>
     </>
   );
 };

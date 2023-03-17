@@ -27,7 +27,13 @@ th {
     border-left: none;
     border-right: none;
 }
-
+.cards{
+    width:18rem;
+    margin-top: 30px;
+}
+.goToCards{
+        margin-left: 500px;
+}
 /* .btn {
   padding: 5px;
   margin:10px;

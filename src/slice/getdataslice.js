@@ -51,6 +51,9 @@ export const updateThunk = createAsyncThunk(
     const updt= await axios.put(`http://localhost:3000/posts/${data.id}`, data);
     // const res = add.data;
      console.log("response in Updatethunk", updt.data);
+     if(updt?.status===200|201){
+        thunkAPI.dispatch(thunkUserData())
+     }
     // if ((res?.status === 200) | 201) {
     //   return thunkAPI.dispatch(thunkUserData());
     // }
