@@ -34,6 +34,9 @@ th {
 .goToCards{
         margin-left: 500px;
 }
+.cardBody{
+    display: none;
+}
 /* .btn {
   padding: 5px;
   margin:10px;

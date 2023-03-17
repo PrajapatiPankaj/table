@@ -1,12 +1,6 @@
 {
   "posts": [
     {
-      "id": 1,
-      "name": "Navnitkaur",
-      "email": "navnit@gmail.com",
-      "author": "Netramani"
-    },
-    {
       "id": 7,
       "name": "Mahesh",
       "title": "React-demo-1",

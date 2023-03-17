@@ -1,18 +1,15 @@
 import "../com.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import { MDBIcon } from "mdb-react-ui-kit";
-import { useSelector } from "react-redux";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-
-// import {
-//   thunkUserData,
-// } from "../slice/getdataslice";
+import { useSelector, useDispatch } from "react-redux";
+import { addUserThunk, deleteThunk, updateThunk } from "../slice/getdataslice";
+import * as Yup from "yup";
+import { useFormik } from "formik";
 
 const Cards = () => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const [val, setVal] = useState(true);
 
   const {
     isLoading,
@@ -23,6 +20,51 @@ const Cards = () => {
   //   useEffect(() => {
   //     //dispatch(thunkUserData());
   //   });
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      author: "",
+    },
+    onSubmit: (values) => {
+      console.log("values", values);
+
+      values?.id
+        ? dispatch(updateThunk(values))
+        : dispatch(addUserThunk(values));
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .min(2, "Name must be more than 1 charecter")
+        .max(15, "Name must be 15 charecter or less")
+        .required("Required"),
+      email: Yup.string().email("Invalid Email Address").required("Required"),
+      author: Yup.string()
+        .max(20, "Author name must have 20 or less charecter")
+        .required("required"),
+    }),
+  });
+  const updt = (data) => {
+
+     const id= data.id;
+     if(id===data.id){
+             formik.setValues({
+               id: data.id,
+               name: data.name,
+               email: data.email,
+               author: data.author,
+             });
+             setVal(false);
+     }
+   
+    // dispatch(updateThunk(data));
+  };
+
+  const del = (id) => {
+    console.log("id in del method ", id);
+    dispatch(deleteThunk(id));
+  };
 
   return (
     <>
@@ -39,18 +81,61 @@ const Cards = () => {
               <Card border="primary" key={data.id} className="cards">
                 <Card.Header>
                   User-Data
-                  <MDBIcon far icon="edit" className="text-info" />
-                  <MDBIcon fas icon="trash-alt" className="text-danger" />
+                  <button onClick={() => updt(data)}>
+                    <MDBIcon far icon="edit" className="text-info" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      del(data.id);
+                    }}
+                  >
+                    <MDBIcon fas icon="trash-alt" className="text-danger" />
+                  </button>
                 </Card.Header>
 
-                <Card.Body>
-                  <Card.Title>{data.name}</Card.Title>
-                  <Card.Text>
-                    {data.email}
+                {val ? (
+                  <Card.Body>
+                    <Card.Title>{data.name}</Card.Title>
+
+                    <Card.Text>
+                      {data.email}
+                      <br />
+                      {data.author}
+                    </Card.Text>
+                  </Card.Body>
+                ) : (
+                  <form onSubmit={formik.handleSubmit}>
+                    <input
+                      id="name"
+                      name="name"
+                      type="string"
+                      placeholder="Name"
+                      className="border border-dark rounded-top w-75"
+                      onChange={formik.handleChange}
+                      value={formik.values.name}
+                    />
                     <br />
-                    {data.author}
-                  </Card.Text>
-                </Card.Body>
+                    <input
+                      id="email"
+                      name="email"
+                      type="string"
+                      placeholder="Email"
+                      className="border border-dark rounded-top w-75"
+                      onChange={formik.handleChange}
+                      value={formik.values.email}
+                    />
+                    <br />
+                    <input
+                      id="author"
+                      name="author"
+                      type="string"
+                      placeholder="Auther name"
+                      className="border border-dark rounded-top w-75"
+                      onChange={formik.handleChange}
+                      value={formik.values.author}
+                    />
+                  </form>
+                )}
               </Card>
             </div>
           ))}
