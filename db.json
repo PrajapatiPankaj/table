@@ -9,12 +9,6 @@
       "subjectId": 2
     },
     {
-      "name": "sanjay",
-      "email": "sanjay@gmail.com",
-      "author": "sdfdf",
-      "id": 8
-    },
-    {
       "name": "mahesh",
       "email": "mahesh@gmail.com",
       "author": "vitrapati",
@@ -57,22 +51,22 @@
       "id": 15
     },
     {
-      "name": "san",
-      "email": "san@gmail.com",
-      "author": "samuti",
+      "name": "Chaprani",
+      "email": "chaprani@gmail.com",
+      "author": "yunocadatadata",
       "id": 16
     },
     {
-      "name": "savan",
-      "email": "savan@gmail.com",
-      "author": "sitramani",
-      "id": 17
+      "id": 17,
+      "name": "Chaprani",
+      "email": "chaprani@gmail.com",
+      "author": "yarn"
     },
     {
-      "id": 18,
-      "name": "Rihan",
-      "email": "rihan@gmail.commmm",
-      "author": "tienbbbbbb"
+      "name": "Privati",
+      "email": "privati@gmail.com",
+      "author": "Lartoper",
+      "id": 18
     }
   ],
   "subject": [
