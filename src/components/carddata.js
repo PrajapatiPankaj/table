@@ -52,8 +52,9 @@ const CardData = ({ data }) => {
       : setVal(true);
   };
 
-
- 
+  const handleClose =()=>{
+        setVal(true)
+  }
 
   const del = (id) => {
     console.log("id in del method ", id);
@@ -125,7 +126,7 @@ const CardData = ({ data }) => {
                   <MDBIcon fas icon="check" />
                 </button>
                 
-                <button type="submit">
+                <button onClick={()=>{handleClose()}}>
                <MDBIcon fas icon="times-circle" />
               
                 </button>

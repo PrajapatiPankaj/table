@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from '../api/instance';
 
 export const thunkUserData = createAsyncThunk("userdata", async () => {
   console.log("step 2222");
   // try {
-  const res = await axios.get("http://localhost:3000/posts");
+  const res = await axios.get("/posts");
 
   console.log("data in response", res.data);
   return res.data;
@@ -17,7 +17,7 @@ export const deleteThunk = createAsyncThunk(
   "userData/deleteThunk",
 
   async (id, thunkAPI) => {
-    const del = await axios.delete(`http://localhost:3000/posts/${id}`);
+    const del = await axios.delete(`/posts/${id}`);
     console.log("data for delete", del);
     if (del?.status === 200) {
       thunkUserData();
@@ -32,7 +32,7 @@ export const addUserThunk = createAsyncThunk(
   "userData/addUserThunk",
 
   async (val, thunkAPI) => {
-    const add = await axios.post(`http://localhost:3000/posts`, val);
+    const add = await axios.post(`/posts`, val);
     const res = add.data;
     console.log("response in addthunk", res);
     if ((res?.status === 200) | 201) {
@@ -48,7 +48,7 @@ export const updateThunk = createAsyncThunk(
 
       console.log("UpdateThunk", data)
       
-    const updt= await axios.put(`http://localhost:3000/posts/${data.id}`, data);
+    const updt= await axios.put(`/posts/${data.id}`, data);
     // const res = add.data;
      console.log("response in Updatethunk", updt.data);
      if(updt?.status===200|201){
