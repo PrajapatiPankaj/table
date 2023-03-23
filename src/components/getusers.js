@@ -2,24 +2,22 @@ import "../com.css";
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { useFormik } from "formik";
-
 // import { getUserData } from "../api/userapi";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addUserThunk,
   deleteThunk,
-  errReset,
   thunkUserData,
   updateThunk,
 } from "../slice/getdataslice";
-// import { useDispatch } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import * as Yup from "yup";
 
-const GetUser = () => {
+const GetUsers = () => {
   // const [userData, setUserData] = useState([]);
   const [show, setShow] = useState(false);
 
@@ -35,29 +33,16 @@ const GetUser = () => {
     allData: userData,
     isLoading,
     hasError,
-    errMsg,
   } = useSelector((state) => state.userdata);
 
-  console.log("Loading", isLoading);
+  console.log("Loading ,kbkjhvhjhkjv", isLoading);
   console.log("Error", hasError);
 
-  console.log(" Error In API: ", errMsg);
-  console.log("UserData error:", userData)
-
+  console.log("Userdata in UI : ", userData);
   useEffect(() => {
-    // const ts = getUserData();
-    // const printAddress = () => {
-    // ts.then((a) => {
-    // console.log(a);
-    // setUserData(a);
-    // });
-    // };
-
-    // printAddress();
-
-    console.log("step 1111");
+    console.log("thunkUserData,DSFSDFDSSDFS");
     dispatch(thunkUserData());
-  }, [dispatch]);
+  }, []);
 
   const handleDelete = (id) => {
     try {
@@ -67,10 +52,6 @@ const GetUser = () => {
       return console.log(`Failed to delete the post ${err}`);
     }
   };
-
-  const handleErrClose =()=>{
-      dispatch(errReset());
-  }
 
   const formik = useFormik({
     initialValues: {
@@ -120,7 +101,7 @@ const GetUser = () => {
       <div className="dispaly">
         {isLoading && <div>Loading....</div>}
 
-        {Array.isArray(userData) && (
+        {userData && (
           <div className="container">
             <Table striped bordered hover>
               <thead>
@@ -268,53 +249,25 @@ const GetUser = () => {
           </div>
         )}
 
-        {/* {hasError && <div>Something went wrong...</div>} */}
-
         {hasError && (
           <div>
             <div
               className="modal show"
               style={{ display: "block", position: "initial" }}
             >
-              {/* <Modal.Dialog
-                className="my-modal"
-                size="lg"
-                aria-labelledby="example-modal-sizes-title-lg"
-              >
+              <Modal.Dialog>
                 <Modal.Header closeButton>
-                  <Modal.Title variant="danger">Error</Modal.Title>
+                  <Modal.Title>Modal title</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                  <p>{errMsg}</p>
+                  <p>Modal body text goes here.</p>
                 </Modal.Body>
 
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
-                    Close
-                  </Button>
+                  <Button variant="secondary">Close</Button>
                 </Modal.Footer>
-              </Modal.Dialog> */}
-
-              <Modal
-                show={hasError}
-                onHide={handleClose}
-                className="my-modal"
-                size="lg"
-                aria-labelledby="example-modal-sizes-title-lg"
-              >
-                <Modal.Header>
-                  <Modal.Title>Error</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <p>{errMsg}</p>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={() => {handleErrClose()} }>
-                    Close
-                  </Button>
-                </Modal.Footer>
-              </Modal>
+              </Modal.Dialog>
             </div>
           </div>
         )}
@@ -323,4 +276,14 @@ const GetUser = () => {
   );
 };
 
-export default GetUser;
+export default GetUsers;
+
+// const ts = getUserData();
+// const printAddress = () => {
+// ts.then((a) => {
+// console.log(a);
+// setUserData(a);
+// });
+// };
+
+// printAddress();

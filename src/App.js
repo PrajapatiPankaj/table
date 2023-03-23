@@ -18,6 +18,7 @@ function App() {
           <Routes>
            <Route path="/" element={<GetUser />} />
            <Route path="/cards" element={<Cards/>}/>
+           {/* <Route path="*" elemet={<NotFound/>}/> */}
           </Routes>
         </Router>
       </div>

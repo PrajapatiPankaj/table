@@ -37,6 +37,10 @@ th {
 .cardBody{
     display: none;
 }
+.my-modal .modal-content {
+  background-color: rgb(0, 217, 255);
+  color: red;
+}
 /* .btn {
   padding: 5px;
   margin:10px;
