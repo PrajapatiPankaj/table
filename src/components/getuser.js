@@ -12,7 +12,6 @@ import {
   thunkUserData,
   updateThunk,
 } from "../slice/getdataslice";
-// import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -20,7 +19,7 @@ import Form from "react-bootstrap/Form";
 import * as Yup from "yup";
 
 const GetUser = () => {
-  // const [userData, setUserData] = useState([]);
+ 
   const [show, setShow] = useState(false);
 
   const handleClose = () => {

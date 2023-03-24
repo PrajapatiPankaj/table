@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../api/instance";
-import { useSelector } from "react-redux";
+
 
 
 export const thunkUserData = createAsyncThunk(
@@ -26,7 +26,7 @@ export const deleteThunk = createAsyncThunk(
 
   async (id, thunkApi) => {
     try{
-    const del = await axios.delete(`/posts/${2020}`);
+    const del = await axios.delete(`/posts/${id}`);
     console.log("data for delete", del);
     if (del?.status === 200) {
       thunkUserData();
